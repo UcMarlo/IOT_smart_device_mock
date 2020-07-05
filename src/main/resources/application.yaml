@@ -1,0 +1,11 @@
+server:
+  port: 8081
+producer:
+  deviceName: "device"
+
+messageBroker:
+  queues:
+    measurementAdded:
+      routingKey: "devices.measurement_added.event"
+      queue: "devices.measurement_added.event.smart_dashboard"
+      exchangeName: "devices"
