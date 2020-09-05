@@ -1,13 +1,9 @@
-FROM azul/zulu-openjdk-alpine:12.0.2
+FROM adoptopenjdk/openjdk11:alpine-jre
 
-RUN apk add --no-cache --update \
-    bash \
-    coreutils
+ARG JAR_FILE=target/smart-producer.jar
 
-# TODO: amazon cert
+WORKDIR /opt/app
 
-COPY target/smart-producer.jar /smart-producer.jar
+COPY ${JAR_FILE} app.jar
 
-EXPOSE 8080
-
-CMD bash /smart-producer.jar
+ENTRYPOINT ["java","-jar","app.jar"]
